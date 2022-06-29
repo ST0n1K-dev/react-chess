@@ -2,14 +2,19 @@ import React from 'react';
 import CellComponent from "./Cell.component";
 import {CellContainerProps} from "./Cell.config";
 
-const CellContainer: React.FC<CellContainerProps> = ({ cell }) => {
+const CellContainer: React.FC<CellContainerProps> = (props) => {
+	const { cell, selected, selectCell } = props;
+
 	const containerProps = () => {
 		return {
-			cell
+			cell,
+			selected
 		};
 	}
 
-	const containerFunctions = {}
+	const containerFunctions = {
+		selectCell
+	}
 
 	return (
 		<CellComponent

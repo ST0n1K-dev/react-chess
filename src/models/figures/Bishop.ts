@@ -10,4 +10,16 @@ export class Bishop extends BaseFigure {
 		this.name = FigureNames.BISHOP;
 		this.image = this.color === Colors.WHITE ? whiteFigureImage : blackFigureImage;
 	}
+
+	canMove(target: Cell): boolean {
+		if (!super.canMove(target)) {
+			return false;
+		}
+
+		if (this.cell.isEmptyDiagonal(target)) {
+			return true;
+		}
+
+		return false;
+	}
 }

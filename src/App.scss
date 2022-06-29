@@ -30,6 +30,21 @@
     width: 50px;
     position: relative;
   }
+
+  &.selected {
+    background-color: saddlebrown;
+  }
+
+  &.attacking {
+    background-color: green;
+  }
+
+  & .available {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 50%;
+  }
 }
 
 .black {
