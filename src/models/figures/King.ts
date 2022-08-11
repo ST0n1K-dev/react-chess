@@ -10,4 +10,28 @@ export class King extends BaseFigure {
 		this.name = FigureNames.KING;
 		this.image = this.color === Colors.WHITE ? whiteFigureImage : blackFigureImage;
 	}
+
+	canMove(target: Cell): boolean {
+		if (!super.canMove(target)) {
+			return false;
+		}
+
+		if (((this.cell.x === target.x && Math.abs(this.cell.y - target.y) === 1)
+			|| (this.cell.y === target.y && Math.abs(this.cell.x - target.x) === 1)
+			|| (Math.abs(this.cell.x - target.x) === 1 && Math.abs(this.cell.y - target.y) === 1))
+			&& this.cell.board.getCell(target.x, target.y).isEmpty()
+		) {
+			return true
+		}
+
+		if (((this.cell.x === target.x && Math.abs(this.cell.y - target.y) === 1)
+			|| (this.cell.y === target.y && Math.abs(this.cell.x - target.x) === 1)
+			|| (Math.abs(this.cell.x - target.x) === 1 && Math.abs(this.cell.y - target.y) === 1))
+			&& this.cell.isEnemy(target)
+		) {
+			return true;
+		}
+
+		return false;
+	}
 }
