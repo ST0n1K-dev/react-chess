@@ -3,7 +3,8 @@ import BoardComponent from "./Board.component";
 import {BoardContainerProps} from "./Board.config";
 import {Cell} from "../../models/Cell";
 
-const BoardContainer: React.FC<BoardContainerProps> = ({ board, setBoard}) => {
+const BoardContainer: React.FC<BoardContainerProps> = (props) => {
+	const { board, setBoard, swapPlayer, currentPlayer } = props;
 	const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
 	useEffect(() => {
@@ -15,9 +16,14 @@ const BoardContainer: React.FC<BoardContainerProps> = ({ board, setBoard}) => {
 		if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
 			selectedCell.moveFigure(cell);
 			setSelectedCell(null);
+			swapPlayer();
 			refreshBoard();
 		} else {
-			setSelectedCell(cell);
+			if (cell.figure?.color === currentPlayer.color) {
+				setSelectedCell(cell);
+			} else {
+				setSelectedCell(null);
+			}
 		}
 	}
 
@@ -34,7 +40,8 @@ const BoardContainer: React.FC<BoardContainerProps> = ({ board, setBoard}) => {
 	const containerProps = () => {
 		return {
 			board,
-			selectedCell
+			selectedCell,
+			currentPlayer
 		};
 	}
 
