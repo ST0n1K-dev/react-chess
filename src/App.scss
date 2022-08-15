@@ -11,12 +11,23 @@
   align-items: center;
 }
 
+.boardWrapper {
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .board {
   width: calc(64px * 8);
   height: calc(64px * 8);
   display: flex;
   flex-wrap: wrap;
   border: 1px solid #000;
+}
+
+.lost {
+    display: flex;
+    column-gap: 20px;
 }
 
 .cell {
